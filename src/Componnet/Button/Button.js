@@ -6,9 +6,7 @@ export default function Button() {
   let [number , setNumber] = useState('');
   let [hasDot , setHasDot] = useState(false);
 
-  if (number.length % 4 == 3){
-    setNumber(number +',')
-  }
+  
 
   let opreator = ['+' , '-' , '*' , '/']
   
