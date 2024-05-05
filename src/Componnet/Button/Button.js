@@ -1,52 +1,46 @@
 import { useState } from "react";
+import { evaluate } from "mathjs";
 import "./Button.css";
 
 export default function Button() {
+  let [number, setNumber] = useState("");
+  let [hasDot, setHasDot] = useState(false);
 
-  let [number , setNumber] = useState('');
-  let [hasDot , setHasDot] = useState(false);
+  let opreator = ["+", "-", "*", "/"];
 
-  
-
-  let opreator = ['+' , '-' , '*' , '/']
-  
-  let checkInput = (text) =>{
-    if (text == '×') return '*';
-    if(text == '%') return '/'
-    return text
-  }
+  let checkInput = (text) => {
+    if (text == "×") return "*";
+    if (text == "%") return "/";
+    return text;
+  };
 
   let clickHnadler = (e) => {
     let input = checkInput(e.target.innerText);
-    if(input =='.'){
-      if(hasDot == true) return
-      else{
-        setHasDot(true)
+    if (input == ".") {
+      if (hasDot == true) return;
+      else {
+        setHasDot(true);
       }
     }
-    if(opreator.includes(input)){
-      setHasDot(false)
+    if (opreator.includes(input)) {
+      setHasDot(false);
     }
-    setNumber(number + input)
-  }
-  
 
-  let equalBtn = (inp) =>{
-    setNumber(eval(number));
-    setHasDot(false)
-    
-    
-    
-  }
+    setNumber(number + input);
+  };
 
-  let backSpace = () =>{
-   setNumber(number.slice(0 , -1))
-  }
-  let clearBtn = () =>{
-   setNumber('')
-  }
+  let equalBtn = () => {
+    setNumber(evaluate(number));
+    setHasDot(false);
+  };
 
- 
+  let backSpace = () => {
+    setNumber(number.slice(0, -1));
+  };
+  let clearBtn = () => {
+    setNumber("");
+  };
+
   return (
     <>
       <div className="screen">
