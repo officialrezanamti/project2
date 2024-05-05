@@ -3,29 +3,55 @@ import "./Button.css";
 
 export default function Button() {
 
-  let [number , setNumber] = useState('0');
+  let [number , setNumber] = useState('');
+  let [hasDot , setHasDot] = useState(false);
+
+  // if(number.length % 4 == 0 ){
+
+  //   setNumber('.'+ number)
+
+  // }
 
 
 
-  let clickHnadler = (e) => {
-
-    let input = e.target.innerText;
-    setNumber(number = input)
-    
-    
-
+  let opreator = ['+' , '-' , '*' , '/']
+  
+  let checkInput = (text) =>{
+    if (text == '×') return '*';
+    if(text == '%') return '/'
+    return text
   }
 
-  let equalBtn = () =>{
+  let clickHnadler = (e) => {
+    let input = checkInput(e.target.innerText);
+    if(input =='.'){
+      if(hasDot == true) return
+      else{
+        setHasDot(true)
+      }
+    }
+    if(opreator.includes(input)){
+      setHasDot(false)
+    }
+    setNumber(number + input)
+  }
+  
 
+  let equalBtn = (inp) =>{
+    setNumber(eval(number));
+    setHasDot(false)
+    
+    
+    
   }
 
   let backSpace = () =>{
-
+   setNumber(number.slice(0 , -1))
   }
   let clearBtn = () =>{
-
+   setNumber('')
   }
+
  
   return (
     <>
