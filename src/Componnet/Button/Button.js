@@ -3,7 +3,7 @@ import "./Button.css";
 
 export default function Button() {
 
-  let [number , setNumber] = useState('');
+  let [number , setNumber] = useState('0');
 
 
 
